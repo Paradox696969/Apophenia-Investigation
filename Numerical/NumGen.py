@@ -13,5 +13,5 @@ for i in numpy.arange(0, 10, 0.065):
 plt.plot(lx, data, marker="o")
 plt.xlabel("input")
 plt.ylabel("f(x)")
-plt.show("")
+plt.show()
 print(data)
