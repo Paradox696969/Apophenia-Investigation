@@ -20,7 +20,7 @@ def overlayImageRandom(imgh, imgw, img_path, save_path, filename, alpha):
     try:
         img3.save(f"{save_path}{filename}")
     except FileNotFoundError or FileExistsError:
-        os.mkdir(save_path)
         img3.save(f"{save_path}{filename}")
-    except:
+    except Exception as e:
+        print(e)
         return
