@@ -1,14 +1,26 @@
 from PIL import Image
 import random
+import os
 
-img = Image.new("RGBA", (256, 256), (255, 255, 255, 150))
-img2 = Image.open("Paradox.png")
-img2 = img2.resize((256, 256))
+def overlayImageRandom(imgh, imgw, img_path, save_path, filename, alpha):
+    img = Image.new("RGB", (imgw, imgh), (255, 255, 255))
+    img2 = Image.open(img_path)
+    img2.convert("RGB")
+    img2 = img2.resize((imgw, imgh))
+    print(img.mode, img2.mode)
+    print(img.size, img2.size)
 
-for x in range(img.width):
-    for y in range(img.height):
-        img.putpixel((x, y), random.choice([(255, 255, 255, 150), (0, 0, 0, 150)]))
-
-img3 = Image.blend(img, img2, alpha=0.4)
-
-img3.show()
+    for x in range(img.width):
+        for y in range(img.height):
+            img.putpixel((x, y), random.choice([(255, 255, 255), (0, 0, 0)]))
+    try:
+        img3 = Image.blend(img, img2, alpha=alpha)
+    except:
+        return
+    try:
+        img3.save(f"{save_path}{filename}")
+    except FileNotFoundError or FileExistsError:
+        os.mkdir(save_path)
+        img3.save(f"{save_path}{filename}")
+    except:
+        return

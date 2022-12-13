@@ -62,6 +62,28 @@ def loadDatasets(path, batchsize, imgh, imgw, val_split):
 
     return train_ds, val_ds, test_ds, num_classes
 
+def loadPredDs(path, batchsize, imgh, imgw,):
+    data_dir = pathlib.Path(path)
+
+    batch_size = batchsize
+    img_height = imgh
+    img_width = imgw
+
+    pred_ds = tf.keras.utils.image_dataset_from_directory(
+    data_dir,
+    image_size=(img_height, img_width),
+    batch_size=batch_size)
+
+    class_names = pred_ds.class_names
+    print(f"Classes: {class_names}")
+    print(pred_ds)
+
+    normalization_layer = layers.Rescaling(1./255)
+
+    normalized_ds = pred_ds.map(lambda x, y: (normalization_layer(x), y))
+
+    return pred_ds
+
 def dataAugmentLayer(img_height, img_width):
     data_augmentation = keras.Sequential(
         [
@@ -93,11 +115,14 @@ def buildModel(
                     ], 
                 optimizer="adam", 
                 loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), 
-                metrics=['accuracy']):
-    model = Sequential([
-        dataAugmentLayer(img_height, img_width),
-        layers.Rescaling(1./255, input_shape=(img_height, img_width, 3))
-    ])
+                metrics=['accuracy'], 
+                data_augmentation=False):
+    model = Sequential()
+
+    if data_augmentation:
+        model.add(dataAugmentLayer(img_height, img_width))
+    
+    model.add(layers.Rescaling(1./255, input_shape=(img_height, img_width, 3)))
 
     for layer in hiddenLayers:
         model.add(layer)
@@ -149,9 +174,13 @@ def showStats(epochs, stats):
     plt.title('Training and Validation Loss')
     plt.show()
 
+def predEval(dataset, model):
+    return [model.predict(dataset), model.evaluate(dataset, return_dict=True)]
+
+
 if __name__ == "__main__":
     imgh, imgw = 180, 180
-    train, val, test, numclasses = loadDatasets("Visual/Normal Datasets/flower_photos", 32, imgh, imgw, 0.2)
+    train, val, test, numclasses = loadDatasets("Visual/Normal Datasets/Flowers", 32, imgh, imgw, 0.2)
     model = buildModel(imgh, imgw, numclasses)
     epochs = 5
     model, history, results = trainAndEvaluate(model, epochs, train, val, test)
