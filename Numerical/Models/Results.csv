@@ -1,1 +1,3 @@
-
+Model,HilbertRandom_Loss,HilbertRandom_Acc,HilbertRandomColour_Loss,HilbertRandomColour_Acc,HilbertMultiRandom_Loss,HilbertMultiRandom_Acc,HilbertStochastic_Loss,HilbertStochastic_Acc
+HilbertModel,9.075142,0.2,7.724542,0.4,16.475918,0.208,9.570932,0.2
+StochasticHilbertModel,11.189902,0.2,11.189901,0.2,11.189902,0.2,11.189879,0.2
