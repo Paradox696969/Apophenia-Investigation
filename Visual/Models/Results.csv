@@ -1,0 +1,4 @@
+Model,Low-Stochas_Loss,Low-Stochas_Acc,Med-Stochas_Loss,Med-Stochas_Acc,High-Stochas_Loss,High-Stochas_Acc,V-High-Stochas_Loss,V-High-Stochas_Acc,Pure-Stochas_Loss,Pure-Stochas_Acc
+MergedModel,0.865811,0.742519,1.855289,0.529493,3.393465,0.353227,6.474813,0.235869,9.48772,0.169102
+MergedImprovedModel,0.293824,0.898399,0.301303,0.890354,0.453422,0.850104,1.080485,0.646197,5.087096,0.324287
+MergedImprovedEvenModel,0.330158,0.911621,0.360029,0.906315,0.367993,0.899375,0.549953,0.833915,1.508069,0.331942
