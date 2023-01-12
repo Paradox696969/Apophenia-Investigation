@@ -1,1 +1,7 @@
-
+Model,Normal,Stochas
+NormalUnopt,6.883575,542.898071
+Normalpattern,0.134363,8.593845
+Normalopt,1.185326,456.253571
+StochasUnopt,4.048372,166.226166
+Stochaspattern,0.000234,0.000234
+Stochasopt,3.691469,166.511765
