@@ -1,0 +1,4 @@
+Model,Normal_Loss,Normal_Acc,None_Loss,None_Acc,Stochastic_Loss,Stochastic_Acc,Stochasticity_Loss,Stochasticity_Acc
+SpectrogramsModel,0.247011,0.943359,0.211538,0.960227,3.505911,0.606232,2.239561,0.651558
+StochasticSpectrogramsModel,0.375946,0.945312,0.55622,0.90625,0.123526,0.974504,0.371346,0.971671
+StochasticSpectrogramsModelComplete,0.365054,0.942708,0.52681,0.910511,0.296869,0.961756,0.284187,0.970255
